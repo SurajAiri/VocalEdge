@@ -27,6 +27,8 @@ speechrecognition = "^3.14.0"
 torch = "^2.5.1"
 ffmpeg = "^1.4"
 simpleaudio = "^1.0.4"
+langchain-openai = "^0.3.0"
+python-dotenv = "^1.0.1"
 
 
 [build-system]
