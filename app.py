@@ -1,72 +1,53 @@
 import streamlit as st
-from src.media.audio_handler import AudioHandler
-from src.media.video_handler import VideoHandler, ReadMode
+from src.activity.activity_model import Activity
+from src.ui import Navigator
+from src.utils.enums import AppScreen
 
-def change_recording_state(value:bool):
-    st.session_state.is_working = value
+def navigate_to(screen:AppScreen):
+    st.session_state.screen = screen
 
+def current_screen():
+    return st.session_state.screen
 
-def start_recording():
-    change_recording_state(True)
+def home_on_activity_choose(activity:Activity):
+    navigate_to(AppScreen.PARTICIPATE)
+    st.session_state.activity = activity.toJson()
+    # st.rerun()
 
-def stop_recording():
-    global audio_handler
-    if audio_handler is not None:
-        print("Trying to Stopping audio recording")
-        audio_handler.stop_and_save_audio()
-        del audio_handler
-    change_recording_state(False)
+def participate_test_complete():
+    navigate_to(AppScreen.RESULT)
 
-audio_handler = None
+def navigation_logic():
+    if AppScreen.PARTICIPATE == st.session_state.screen:
+        Navigator.ParticipateScreen(on_act_complete=participate_test_complete)
+    elif AppScreen.RESULT == st.session_state.screen:
+        Navigator.ResultScreen()
+    elif AppScreen.ABOUT == st.session_state.screen:
+        Navigator.AboutScreen()
+    else:
+        Navigator.HomeScreen(on_act_choose=home_on_activity_choose)
+
+def sidebar_logic():
+    scr = current_screen()
+    if scr != AppScreen.PARTICIPATE:
+        st.sidebar.title("Navigation")
+        if scr != AppScreen.HOME:
+            st.sidebar.button("Home",on_click=lambda: navigate_to(AppScreen.HOME))
+        if scr != AppScreen.ABOUT:
+            st.sidebar.button("About Us",on_click=lambda: navigate_to(AppScreen.ABOUT))
+
 
 def main():
-    global audio_handler
-    vid_handler = None
-    st.header("Video Recorder with OpenCV and Streamlit")
-
-    stFrame = st.empty()
-
-
     if "is_working" not in st.session_state:
         st.session_state.is_working = False
 
-    # Button to start recording
-    if not st.session_state.is_working:
-        if vid_handler is not None:
-            del vid_handler
-        st.button("Start Recording",on_click= start_recording)
-    else:
-        if audio_handler is None:
-            audio_handler = AudioHandler()
-            audio_handler.init_record()
+    if "screen" not in st.session_state:
+        print("no session screen found")
+        st.session_state.screen = AppScreen.HOME
 
-        if vid_handler is None:
-            vid_handler = VideoHandler()
-            vid_handler.set_read_mode(ReadMode.CAMERA)
-
-        st.button("Stop Recording",on_click=stop_recording)
-
+    sidebar_logic()
+    navigation_logic()
     
-
-
-    while st.session_state.is_working:
-        # Record audio
-        # audio_handler.record_audio()
-
-        # Initialize the video handler
-        frame = vid_handler.read_frame()
-        if frame is None:
-            st.error("Failed to read frame.")
-            break
-
-        # Convert the frame to RGB for Streamlit display
-        stFrame.image(frame, channels="RGB")
-
-        # Stop recording if the button is pressed
-        if not st.session_state.is_working:
-            break
-
-
 
 if __name__ == "__main__":
     main() 

@@ -1,11 +1,7 @@
 import pyaudio
 import wave
 import threading
-from enum import Enum
-
-class AudioMode(Enum):
-    NOT_RECORDING = 0
-    RECORDING = 1
+from src.utils.enums import AudioMode
 
 class AudioHandler:
     def __init__(self, out_path='output/temp/audio.wav'):

@@ -1,16 +1,11 @@
 import cv2
-from enum import Enum
-
-class ReadMode(Enum):
-    NONE = 0
-    VIDEO = 1
-    CAMERA = 2
+from src.utils.enums import VideoMode
 
 
 class VideoHandler():
     def __init__(self,fps = 24,frame_size = (640,480),out_path = 'output/temp/vid.avi'):
         self.out_path = out_path
-        self.read_mode = ReadMode.NONE
+        self.read_mode = VideoMode.NONE
         self.vid = None
         self.out = None
         # self.__init_camera_read__(frame_size,fps)
@@ -21,7 +16,7 @@ class VideoHandler():
 
     def __init_camera_read__(self,frame_size=(640,480),fps=30):
         print("init camera for reading")
-        self.read_mode = ReadMode.CAMERA
+        self.read_mode = VideoMode.CAMERA
         self.vid = cv2.VideoCapture(0)
 
          # Set the frame width and height
@@ -54,8 +49,8 @@ class VideoHandler():
             return
         
         self.__release_video__()
-        if ReadMode.VIDEO == mode:
-            self.read_mode = ReadMode.VIDEO
+        if VideoMode.VIDEO == mode:
+            self.read_mode = VideoMode.VIDEO
             self.vid = cv2.VideoCapture(vid_path)
             self.out = None
         else:
@@ -64,8 +59,8 @@ class VideoHandler():
 
 
     def read_frame(self):
-        if ReadMode.VIDEO == self.read_mode:
-            print("Cannot read frame in video mode. Change video mode to ReadMode.CAMERA")
+        if VideoMode.VIDEO == self.read_mode:
+            print("Cannot read frame in video mode. Change video mode to VideoMode.CAMERA")
 
             return None
         if not self.vid.isOpened():
@@ -85,8 +80,8 @@ class VideoHandler():
         return frame
 
     def play_video(self):
-        if ReadMode.VIDEO == self.read_mode:
-            print("Cannot play video in camera mode. Change video mode to ReadMode.VIDEO")
+        if VideoMode.VIDEO == self.read_mode:
+            print("Cannot play video in camera mode. Change video mode to VideoMode.VIDEO")
             return
         
         if not self.vid.isOpened():
