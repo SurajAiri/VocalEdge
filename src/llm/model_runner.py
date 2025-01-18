@@ -9,11 +9,10 @@ class ModelRunner:
 
     def generate_question(self, activity, topic, count):
         prompt = TOPIC_GENERATOR_PROMPT.format(activity=activity, topic=topic, count=count)
-        # print(prompt)
         return self.llm.invoke(prompt)
     
-    def evaluate_speech(self, topic, activity):
-        prompt = EVALUATE_SPEECH_PROMPT.format(topic=topic, activity=activity)
+    def evaluate_speech(self, question, activity_title,transcript):
+        prompt = EVALUATE_SPEECH_PROMPT.format(question=question, activity=activity_title, transcript=transcript)
         return self.llm.generate(prompt)
     
     

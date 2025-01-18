@@ -1,5 +1,6 @@
 import streamlit as st
 from src.activity.activity_model import Activity
+from src.llm.model_runner import ModelRunner
 from src.ui import Navigator
 from src.utils.enums import AppScreen
 
@@ -10,14 +11,22 @@ def current_screen():
     return st.session_state.screen
 
 def home_on_activity_choose(activity:Activity):
-    navigate_to(AppScreen.PARTICIPATE)
+    global llmRunner
     st.session_state.activity = activity.toJson()
+    # question = llmRunner.generate_question(activity.title, activity.promptTopic, activity.questionCount)
+    # print(question.content)
+    question = {}
+    question['content'] = "What is your name?"
+    st.session_state.question = question['content']
+
+    navigate_to(AppScreen.PARTICIPATE)
     # st.rerun()
 
 def participate_test_complete():
     navigate_to(AppScreen.RESULT)
 
-def navigation_logic():
+
+def navigation_logic(llmRunner:ModelRunner, **kwargs):
     if AppScreen.PARTICIPATE == st.session_state.screen:
         Navigator.ParticipateScreen(on_act_complete=participate_test_complete)
     elif AppScreen.RESULT == st.session_state.screen:
@@ -25,6 +34,7 @@ def navigation_logic():
     elif AppScreen.ABOUT == st.session_state.screen:
         Navigator.AboutScreen()
     else:
+        st.session_state.question = None
         Navigator.HomeScreen(on_act_choose=home_on_activity_choose)
 
 def sidebar_logic():
@@ -38,6 +48,7 @@ def sidebar_logic():
 
 
 def main():
+    global llmRunner
     if "is_working" not in st.session_state:
         st.session_state.is_working = False
 
@@ -45,8 +56,10 @@ def main():
         print("no session screen found")
         st.session_state.screen = AppScreen.HOME
 
+    llmRunner = ModelRunner()
+
     sidebar_logic()
-    navigation_logic()
+    navigation_logic(llmRunner)
     
 
 if __name__ == "__main__":

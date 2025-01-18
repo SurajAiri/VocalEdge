@@ -20,6 +20,14 @@ outputs/
 *.json
 *.txt
 
+
+# media
+*.mp4
+*.avi
+*.mov
+*.mp3
+*.wav
+
 # Distribution / packaging
 .Python
 build/

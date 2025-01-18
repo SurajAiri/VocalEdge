@@ -1,5 +1,5 @@
 import streamlit as st
-
+from src.activity.activity_model import Activity
 from src.media.audio_handler import AudioHandler
 from src.media.video_handler import VideoHandler
 from src.utils.enums import VideoMode
@@ -29,9 +29,23 @@ def participate_ui(on_act_complete):
     vid_handler = None
     audio_handler = None
 
+    # Display the current question from session state
+    # Wait with loading spinner until st.session_state.question is not None
+    if 'question' not in st.session_state or st.session_state.question is None:
+        with st.spinner('Waiting for question...'):
+            while 'question' not in st.session_state or st.session_state.question is None:
+                pass
+
+    
+
+    # Display activity details from session state
+    if 'activity' in st.session_state :
+        act = Activity(st.session_state.activity)
+        st.subheader(act.title)
+        st.write(act.description)
+    if 'question' in st.session_state:
+        st.subheader(st.session_state.question)
     stFrame = st.empty()
-
-
     # Button to start recording
     if not st.session_state.is_working:
         if vid_handler is not None:

@@ -1,3 +1,4 @@
+from src.llm.model_runner import ModelRunner
 from src.ui.home_screen import home_screen
 from src.ui.participate_screen import participate_ui
 from src.ui.result_screen import result_screen
@@ -10,8 +11,8 @@ class Navigator:
         return home_screen(on_act_choose)
     
     @staticmethod
-    def ParticipateScreen(on_act_complete):
-        return participate_ui(on_act_complete)
+    def ParticipateScreen( on_act_complete):
+        return participate_ui( on_act_complete)
     
     @staticmethod
     def ResultScreen():
