@@ -35,6 +35,23 @@ To get started with Voice Edge, follow these steps:
     streamlit run app.py
     ```
 
+# Preview
+### Preview
+
+Here are some preview images of Voice Edge in action:
+
+![Preview](resources/voice_edge_preview.gif)
+
+![Home Page](resources/home.png)
+*The home page of Voice Edge, providing an overview of the features and navigation.*
+
+![Speaking Exercise](resources/exercise.png)
+*An interactive speaking exercise where users can practice.*
+
+![Report](resources/result.png)
+*Detailed feedback on pronunciation, tone, and pace to help users improve their speaking skills.*
+
+
 ### Contributing
 
 We welcome contributions to Voice Edge! If you have any ideas or improvements, feel free to open an issue or submit a pull request.

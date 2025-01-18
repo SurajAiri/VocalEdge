@@ -129,11 +129,11 @@ def result_screen():
     col1, col2 = st.columns(2)
     with col1:
         st.markdown("<h3 style='color: #2196F3;'>Strengths</h3>", unsafe_allow_html=True)
-        st.markdown(f"<p style='color: #455A64;'>{data['strengths']}</p>", unsafe_allow_html=True)
+        st.markdown(f"<p style='color: #ffffff;'>{data['strengths']}</p>", unsafe_allow_html=True)
 
     with col2:
         st.markdown("<h3 style='color: #E91E63;'>Weaknesses</h3>", unsafe_allow_html=True)
-        st.markdown(f"<p style='color: #455A64;'>{data['weaknesses']}</p>", unsafe_allow_html=True)
+        st.markdown(f"<p style='color: #ffffff;'>{data['weaknesses']}</p>", unsafe_allow_html=True)
 
     # Overall Performance Section
     st.markdown(
