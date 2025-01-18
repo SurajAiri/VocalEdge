@@ -12,24 +12,23 @@ def current_screen():
 
 def home_on_activity_choose(activity:Activity):
     global llmRunner
+    st.session_state.done_preparation = False
     st.session_state.activity = activity.toJson()
-    # question = llmRunner.generate_question(activity.title, activity.promptTopic, activity.questionCount)
+    question = llmRunner.generate_question(activity.title, activity.promptTopic, activity.questionCount)
     # print(question.content)
     # question = {}
     # question['content'] = "What is your name?"
-    # st.session_state.question = question.content
-    st.session_state.question = "question.content"
-    st.session_state.done_preparation = False
-
-
+    st.session_state.question = question.content
+    # st.session_state.question = "question.content"
+# 
     navigate_to(AppScreen.PARTICIPATE)
-    # st.rerun()
+    # navigate_to(AppScreen.RESULT)
 
 def participate_test_complete():
     navigate_to(AppScreen.RESULT)
 
 
-def navigation_logic(llmRunner:ModelRunner, **kwargs):
+def navigation_logic():
     if AppScreen.PARTICIPATE == st.session_state.screen:
         Navigator.ParticipateScreen(on_act_complete=participate_test_complete)
     elif AppScreen.RESULT == st.session_state.screen:
@@ -60,11 +59,13 @@ def main():
 
     if "screen" not in st.session_state:
         st.session_state.screen = AppScreen.HOME
+    st.set_page_config(layout="wide")
+    
 
     llmRunner = ModelRunner()
 
     sidebar_logic()
-    navigation_logic(llmRunner)
+    navigation_logic()
     
 
 if __name__ == "__main__":

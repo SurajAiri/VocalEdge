@@ -14,12 +14,18 @@ def start_recording():
 
 def cancel_recording():
     change_recording_state(False)
-    del st.session_state.audio_handler
+    audioHandler = st.session_state.audio_handler
+    if audioHandler is not None:
+        print("Trying to Stopping audio recording")
+        audioHandler.stop_and_save_audio()
+        del audioHandler
+        del st.session_state.audio_handler
     del st.session_state.video_handler
     st.session_state.screen = AppScreen.HOME    
     
 
 def stop_recording(on_act_complete):
+    change_recording_state(False)
     audioHandler = st.session_state.audio_handler
     if audioHandler is not None:
         print("Trying to Stopping audio recording")

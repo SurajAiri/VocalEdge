@@ -33,7 +33,6 @@ class VideoHandler():
         self.out = cv2.VideoWriter(self.out_path, fourcc, fps,frameSize= frame_size) 
 
 
-
     def __release_video__(self):
         if self.out is not None:
             self.out.release()

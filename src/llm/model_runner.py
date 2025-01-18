@@ -12,7 +12,8 @@ class ModelRunner:
         return self.llm.invoke(prompt)
     
     def evaluate_speech(self, question, activity_title,transcript):
+
         prompt = EVALUATE_SPEECH_PROMPT.format(question=question, activity=activity_title, transcript=transcript)
-        return self.llm.generate(prompt)
-    
-    
+
+        return self.llm.invoke(prompt)
+
