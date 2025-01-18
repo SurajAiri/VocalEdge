@@ -15,9 +15,12 @@ def home_on_activity_choose(activity:Activity):
     st.session_state.activity = activity.toJson()
     # question = llmRunner.generate_question(activity.title, activity.promptTopic, activity.questionCount)
     # print(question.content)
-    question = {}
-    question['content'] = "What is your name?"
-    st.session_state.question = question['content']
+    # question = {}
+    # question['content'] = "What is your name?"
+    # st.session_state.question = question.content
+    st.session_state.question = "question.content"
+    st.session_state.done_preparation = False
+
 
     navigate_to(AppScreen.PARTICIPATE)
     # st.rerun()
@@ -52,8 +55,10 @@ def main():
     if "is_working" not in st.session_state:
         st.session_state.is_working = False
 
+    if 'done_preparation' not in st.session_state:
+        st.session_state.done_preparation = False
+
     if "screen" not in st.session_state:
-        print("no session screen found")
         st.session_state.screen = AppScreen.HOME
 
     llmRunner = ModelRunner()

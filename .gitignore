@@ -20,6 +20,8 @@ outputs/
 *.json
 *.txt
 
+# misc
+*temp*.*
 
 # media
 *.mp4
