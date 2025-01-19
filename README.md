@@ -1,6 +1,6 @@
-# Voice Edge: Master the Art of Speaking
+# Vocal Edge: Master the Art of Speaking
 
-Voice Edge is a web-based application designed to help you master the art of speaking. Built using Streamlit and powered by LangChain, Whisper, and Ollama, this app provides a seamless and interactive experience for improving your speaking skills.
+Vocal Edge is a web-based application designed to help you master the art of speaking. Built using Streamlit and powered by LangChain, Whisper, and Ollama, this app provides a seamless and interactive experience for improving your speaking skills.
 
 ### Features
 
@@ -19,7 +19,7 @@ Voice Edge is a web-based application designed to help you master the art of spe
 
 ### Getting Started
 
-To get started with Voice Edge, follow these steps:
+To get started with Vocal Edge, follow these steps:
 
 1. Clone the repository:
     ```bash
@@ -38,12 +38,12 @@ To get started with Voice Edge, follow these steps:
 # Preview
 ### Preview
 
-Here are some preview images of Voice Edge in action:
+Here are some preview images of Vocal Edge in action:
 
-![Preview](resources/voice_edge_preview.gif)
+![Preview](resources/vocal_edge_preview.gif)
 
 ![Home Page](resources/home.png)
-*The home page of Voice Edge, providing an overview of the features and navigation.*
+*The home page of Vocal Edge, providing an overview of the features and navigation.*
 
 ![Speaking Exercise](resources/exercise.png)
 *An interactive speaking exercise where users can practice.*
@@ -54,7 +54,7 @@ Here are some preview images of Voice Edge in action:
 
 ### Contributing
 
-We welcome contributions to Voice Edge! If you have any ideas or improvements, feel free to open an issue or submit a pull request.
+We welcome contributions to Vocal Edge! If you have any ideas or improvements, feel free to open an issue or submit a pull request.
 
 ### Contact
 

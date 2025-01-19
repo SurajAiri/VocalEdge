@@ -5,7 +5,7 @@ def about_screen():
 
     # Introduction
     st.markdown("""
-    **Voice Edge: Master the Art of Speaking** is a web-based application designed to help you master the art of speaking.
+    **Vocal Edge: Master the Art of Speaking** is a web-based application designed to help you master the art of speaking.
     Our goal is to provide you with an interactive and personalized experience to improve your speaking skills through real-time feedback.
     The app uses advanced language models and speech recognition technology to help you enhance your fluency and confidence in speaking.
     """)
@@ -13,14 +13,14 @@ def about_screen():
     # Team Section
     st.subheader("Our Team")
     st.markdown("""
-    - **[Suraj Airi](https://www.linkedin.com/in/suraj-kiran-airi/)**: Creator and Developer of Voice Edge. Passionate about natural language processing, Gen AI, and improving speaking skills.
+    - **[Suraj Airi](https://www.linkedin.com/in/suraj-kiran-airi/)**: Creator and Developer of Vocal Edge. Passionate about natural language processing, Gen AI, and improving speaking skills.
     - **Contributors**: We welcome contributions from the community. If you are interested in helping, feel free to reach out!
     """)
 
     # Technology Section
     st.subheader("Technologies We Use")
     st.markdown("""
-    Voice Edge leverages cutting-edge technologies to provide an excellent user experience:
+    Vocal Edge leverages cutting-edge technologies to provide an excellent user experience:
     - **Streamlit**: For creating the web-based interface.
     - **LangChain**: For natural language processing and understanding.
     - **Whisper**: For speech recognition and analysis.
@@ -37,5 +37,5 @@ def about_screen():
 
     # A little disclaimer or invitation to contribute
     st.markdown("""
-    We are always looking for ways to improve Voice Edge. If you have any suggestions or would like to contribute to the project, please check out our [GitHub Repository](https://github.com/SurajAiri/VocalEdge.git) and feel free to submit issues or pull requests.
+    We are always looking for ways to improve Vocal Edge. If you have any suggestions or would like to contribute to the project, please check out our [GitHub Repository](https://github.com/SurajAiri/VocalEdge.git) and feel free to submit issues or pull requests.
     """)
